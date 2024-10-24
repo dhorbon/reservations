@@ -1,0 +1,123 @@
+﻿<Page x:Class="reservations.AdminPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:reservations"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPanel">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="3" Grid.Column="0">
+            <TextBlock Text="Login: " />
+            <TextBox Text="{Binding NewLogin}"/>
+            <TextBlock Text="Password: " />
+            <TextBox Text="{Binding NewPassword}"/>
+            <TextBlock Text="Is Admin: " />
+            <CheckBox IsChecked="{Binding NewIsAdmin}" />
+            <Button Content="Add User" Command="{Binding AddUserCommand}" />
+            <TextBlock Text="{Binding UserError}" />
+            <ListView ItemsSource="{Binding users}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Id}" />
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding Login}" />
+                            <TextBlock Text=" " />
+                            <CheckBox IsChecked="{Binding IsAdmin}" />
+                            <TextBlock Text=" " />
+                            <Button Content="Edit" Command="{Binding EditCommand}" />
+                            <TextBlock Text=" " />
+                            <Button Content="Delete" Command="{Binding DeleteCommand}" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="3"  Grid.Column="1">
+            <TextBlock Text="Room Number: " />
+            <TextBox Text="{Binding NewRoomNumber}" />
+            <TextBlock Text="Room Type: " />
+            <TextBox Text="{Binding NewType}" />
+            <TextBlock Text="Price: " />
+            <TextBox Text="{Binding NewPrice}" />
+            <TextBlock Text="Size: " />
+            <TextBox Text="{Binding NewSize}" />
+            <Button Content="Add Room" Command="{Binding AddRoomCommand}" />
+            <TextBlock Text="{Binding RoomError}" />
+            <ListView ItemsSource="{Binding rooms}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox Text="{Binding RoomNumber}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding Type}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding Price}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding Size}" />
+                            <TextBlock Text=" " />
+                            <Button Content="Edit" Command="{Binding EditCommand}" />
+                            <TextBlock Text=" " />
+                            <Button Content="Delete" Command="{Binding DeleteCommand}" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="3" Grid.Column="2">
+            <TextBlock Text="Room Number: " />
+            <TextBox Text="{Binding NewResRoomNumber}" />
+            <TextBlock Text="Reservation Start Date: " />
+            <DatePicker SelectedDate="{Binding NewReservationStart}" />
+            <TextBlock Text="Reservation End Date: " />
+            <DatePicker SelectedDate="{Binding NewReservationEnd}" />
+            <TextBlock Text="User ID: " />
+            <TextBox Text="{Binding NewResUserId}" />
+            <TextBlock Text="Guest Full Name: " />
+            <TextBox Text="{Binding NewGuestFullName}" />
+            <TextBlock Text="Guest Email: " />
+            <TextBox Text="{Binding NewGuestEmail}" />
+            <TextBlock Text="Guest Phone Number: " />
+            <TextBox Text="{Binding NewGuestPhone}" />
+            <TextBlock Text="Reservation Status: " />
+            <TextBox Text="{Binding NewStatus}" />
+            <Button Content="Add Reservation" Command="{Binding AddReservationCommand}" />
+            <TextBlock Text="{Binding ReservationError}" />
+            <ListView ItemsSource="{Binding reservations}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox Text="{Binding RoomNumber}" />
+                            <TextBlock Text=" " />
+                            <DatePicker SelectedDate="{Binding ReservationStart}" />
+                            <TextBlock Text=" " />
+                            <DatePicker SelectedDate="{Binding ReservationEnd}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding UserId}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding GuestFullName}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding GuestEmail}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding GuestPhone}" />
+                            <TextBlock Text=" " />
+                            <TextBox Text="{Binding Status}" />
+                            <TextBlock Text=" " />
+                            <Button Content="Edit" Command="{Binding EditCommand}" />
+                            <TextBlock Text=" " />
+                            <Button Content="Delete" Command="{Binding DeleteCommand}" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>
