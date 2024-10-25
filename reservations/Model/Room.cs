@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents.Serialization;
 
 namespace reservations
 {
@@ -22,6 +24,28 @@ namespace reservations
             Type = type;
             Price = price;
             Size = size;
+        }
+
+        public static bool IsAvaliableFromTo(Room room, DateTime start, DateTime end)
+        {
+            using ApplicationDataContext context = new();
+
+            List<Reservation> res = context.Reservations
+                .Where(x => x.RoomNumber == room.RoomNumber)
+                .Where(x => x.Status != "cancelled")
+                .ToList();
+            for (int i = 0; i < res.Count; i++)
+            {
+                if ((
+                    res[i].ReservationStart >= start && res[i].ReservationStart <= end) || (
+                    res[i].ReservationEnd >= start && res[i].ReservationEnd <= end
+                    ))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

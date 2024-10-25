@@ -36,8 +36,8 @@ namespace reservations
         public ICommand AddRoomCommand { get; set; }
 
         public string NewResRoomNumber { get; set; }
-        public DateTime NewReservationStart { get; set; }
-        public DateTime NewReservationEnd { get; set; }
+        public DateTime NewReservationStart { get; set; } = DateTime.Now;
+        public DateTime NewReservationEnd { get; set; } = DateTime.Now.AddDays(1);
         public string NewResUserId { get; set; }
         public string NewGuestFullName { get; set; }
         public string NewGuestEmail { get; set; }

@@ -23,6 +23,8 @@ namespace reservations
         public UserPanel()
         {
             InitializeComponent();
+
+            DataContext = UserPanelViewModel.getInstance;
         }
     }
 }

@@ -84,6 +84,7 @@ namespace reservations
                 }
                 else
                 {
+                    UserPanelViewModel.getInstance.SetUser(Data.First());
                     MainPageViewModel.getInstance.ChangePage(new UserPanel());
                 }
             }

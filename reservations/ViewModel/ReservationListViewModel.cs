@@ -10,7 +10,7 @@ namespace reservations.ViewModel
 {
     internal class ReservationListViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string RoomNumber { get; set; }
         public DateTime ReservationStart { get; set; }
         public DateTime ReservationEnd { get; set; }
@@ -26,7 +26,7 @@ namespace reservations.ViewModel
 
         public ReservationListViewModel(Reservation r)
         {
-            Id = Convert.ToString(r.Id);
+            Id = r.Id;
             RoomNumber = Convert.ToString(r.RoomNumber);
             ReservationStart = r.ReservationStart;
             ReservationEnd = r.ReservationEnd;
@@ -44,10 +44,19 @@ namespace reservations.ViewModel
         {
             using ApplicationDataContext context = new();
 
-            Reservation? edited = context.Reservations.FirstOrDefault(x => x.Id == int.Parse(Id));
+            Reservation? edited = context.Reservations.FirstOrDefault(x => x.Id == Id);
 
             if (edited != null)
             {
+                edited.RoomNumber = int.Parse(RoomNumber);
+                edited.ReservationStart = ReservationStart;
+                edited.ReservationEnd = ReservationEnd;
+                edited.UserId = int.Parse(UserId);
+                edited.GuestFullName = GuestFullName;
+                edited.GuestEmail = GuestEmail;
+                edited.GuestPhone = GuestPhone;
+                edited.Status = Status;
+
                 context.Reservations.Update(edited);
 
                 context.SaveChanges();
@@ -57,7 +66,7 @@ namespace reservations.ViewModel
         {
             using ApplicationDataContext context = new();
 
-            Reservation? reservation = context.Reservations.FirstOrDefault(x => x.Id == int.Parse(Id));
+            Reservation? reservation = context.Reservations.FirstOrDefault(x => x.Id == Id);
 
             if (reservation != null)
             {
